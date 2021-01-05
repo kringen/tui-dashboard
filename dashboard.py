@@ -6,8 +6,8 @@ def calculate_display(window, box_count, box_order):
     maxy, maxx = window.getmaxyx()
     box_width = math.floor(maxx / box_count)
     begin_x = box_width * (box_order)
-    box_height = maxy
     begin_y = 0
+    box_height = maxy - begin_y
     return box_height, box_width, begin_y, begin_x
 
 def init(title,data):
@@ -23,7 +23,7 @@ def init(title,data):
     n = 0
     for item in data:
         box_height, box_width, begin_y, begin_x = calculate_display(screen, box_count, n)
-        dynamic_box = curses.newwin(box_height, box_width, begin_y, begin_x)
+        dynamic_box = curses.newwin(box_height, box_width, begin_y + 2, begin_x)
         dynamic_box.box()
         boxes.append(dynamic_box)
         n += 1
@@ -41,9 +41,9 @@ def update_screen(screen, boxes, data):
     for box in boxes:
         box_height, box_width, begin_y, begin_x = calculate_display(screen, len(boxes), n)
         # Create an inner box to add padding for text
-        box.addstr(1,1, "TEST")
+        box.addstr(1,1, data[n]["title"])
         inner_box = curses.newwin(box_height - 2, box_width - 2, begin_y + 2, begin_x+1)
-        inner_box.addstr(1, 1, data[n]["one"])
+        inner_box.addstr(1, 1, data[n]["content"])
         inner_box.refresh()
         box.refresh()
         n += 1
@@ -51,28 +51,13 @@ def update_screen(screen, boxes, data):
 def main():
     data = [
         {
-            "one":"This is a really long string that is intended to wrap.  If it doesn't wrap, it won't impact.",
-            "two":"two",
+            "title":"GPS Data",
+            "content":"two",
             "three":"three"
         },
         {
-            "one":"one",
-            "two":"two",
-            "three":"three"
-        },
-        {
-            "one":"one",
-            "two":"two",
-            "three":"three"
-        },
-        {
-            "one":"one",
-            "two":"two",
-            "three":"three"
-        },
-        {
-            "one":"one",
-            "two":"two",
+            "title":"Temperature",
+            "content":"two",
             "three":"three"
         }
     ]
