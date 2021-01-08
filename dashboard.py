@@ -10,13 +10,35 @@ def calculate_display(window, box_count, box_order):
     box_height = maxy - begin_y
     return box_height, box_width, begin_y, begin_x
 
-def init(title,data):
+def init():
     screen = curses.initscr()
     curses.noecho()  # disable the keypress echo to prevent double input
     curses.cbreak()  # disable line buffers to run the keypress immediately
     curses.curs_set(0)
     screen.keypad(1)  # enable keyboard use
-    screen.addstr(1, 2, title, curses.A_UNDERLINE)
+    return screen
+
+def create_frame(screen):
+    box_height, box_width, begin_y, begin_x = calculate_display(screen, 1, 0)
+    outer_frame = curses.newwin(box_height, box_width, begin_y, begin_x)
+    outer_frame.box()
+    outer_frame.refresh()
+    return outer_frame
+
+#def create_row(parent, box_count, height, margin):
+#    n = 0
+#    for item in range(box_count):
+#        box = 
+#        n += 1
+
+def create_box():
+    box_height, box_width, begin_y, begin_x = calculate_display(parent, box_count, n)
+    box = curses.newwin(box_height - margin - margin, box_width - margin, begin_y + margin, begin_x + margin)
+    box.box()
+    box.refresh()
+    return box
+
+def create_boxes():
     # Calculate
     boxes = []
     box_count = len(data)
@@ -49,6 +71,11 @@ def update_screen(screen, boxes, data):
         n += 1
 
 def main():
+    layout =  {
+            "row1": {"name":"column1"},
+            "row2": {"name":"column1"},
+            "row3": {"name":"column1"}
+    }
     data = [
         {
             "title":"GPS Data",
@@ -62,13 +89,17 @@ def main():
         }
     ]
 
-    screen, boxes = init("Dashboard",data)
-    try:
-        while True:
-            update_screen(screen,boxes,data)
-            time.sleep(1)
-    except KeyboardInterrupt:
-        curses.endwin()
+    layout
+    #screen = init()
+    #outer_frame = create_frame(screen)
+    #create_row(outer_frame, 3, 3, 1)
+
+    #try:
+    #    while True:
+    #        update_screen(screen,boxes,data)
+    #        time.sleep(1)
+    #except KeyboardInterrupt:
+    #    curses.endwin()
 
 if __name__ == '__main__':
     main()
