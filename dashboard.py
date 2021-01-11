@@ -1,13 +1,16 @@
 import curses
 import time
 import math
+import json
 
-def calculate_display(window, box_count, box_order):
+def calculate_display(window, column_count, column_order, row_count, row_order):
     maxy, maxx = window.getmaxyx()
-    box_width = math.floor(maxx / box_count)
-    begin_x = box_width * (box_order)
-    begin_y = 0
-    box_height = maxy - begin_y
+    # Calculate column width
+    box_width = math.floor(maxx / column_count)
+    begin_x = box_width * (column_order)
+    # Calculate row height 
+    box_height = math.floor(maxy / row_count)
+    begin_y = box_height * (row_order)
     return box_height, box_width, begin_y, begin_x
 
 def init():
@@ -19,38 +22,43 @@ def init():
     return screen
 
 def create_frame(screen):
-    box_height, box_width, begin_y, begin_x = calculate_display(screen, 1, 0)
+    box_height, box_width, begin_y, begin_x = calculate_display(screen, 1,0, 1, 0)
     outer_frame = curses.newwin(box_height, box_width, begin_y, begin_x)
     outer_frame.box()
     outer_frame.refresh()
     return outer_frame
 
-#def create_row(parent, box_count, height, margin):
-#    n = 0
-#    for item in range(box_count):
-#        box = 
-#        n += 1
+def create_layout(frame,layout):
+    row_count = len(layout["rows"])
+    rowid = 0
+    for row in layout["rows"]:
+        column_count = len(row["columns"])
+        columnid = 0
+        for column in row["columns"]:   
+            box_height, box_width, begin_y, begin_x = calculate_display(parframeent, column_count, columnid, row_count, rowid)
+            dynamic_row = curses.newwin(box_height, box_width, begin_y, begin_x)
+            dynamic_row.box()
+            dynamic_row.refresh()
+            column["box"] = dynamic_row
+            columnid += 1
+        #boxes.append(dynamic_box)
+        rowid += 1
 
-def create_box():
-    box_height, box_width, begin_y, begin_x = calculate_display(parent, box_count, n)
-    box = curses.newwin(box_height - margin - margin, box_width - margin, begin_y + margin, begin_x + margin)
-    box.box()
-    box.refresh()
-    return box
-
-def create_boxes():
-    # Calculate
-    boxes = []
-    box_count = len(data)
-    n = 0
-    for item in data:
-        box_height, box_width, begin_y, begin_x = calculate_display(screen, box_count, n)
-        dynamic_box = curses.newwin(box_height, box_width, begin_y + 2, begin_x)
-        dynamic_box.box()
-        boxes.append(dynamic_box)
-        n += 1
-
-    return screen, boxes
+def update_layout(frame,layout):
+    row_count = len(layout["rows"])
+    rowid = 0
+    for row in layout["rows"]:
+        column_count = len(row["columns"])
+        columnid = 0
+        for column in row["columns"]:   
+            box_height, box_width, begin_y, begin_x = calculate_display(parframeent, column_count, columnid, row_count, rowid)
+            dynamic_row = curses.newwin(box_height, box_width, begin_y, begin_x)
+            dynamic_row.box()
+            dynamic_row.refresh()
+            column["box"] = dynamic_row
+            columnid += 1
+        #boxes.append(dynamic_box)
+        rowid += 1
 
 def update_screen(screen, boxes, data):
     maxy, maxx = screen.getmaxyx()
@@ -71,27 +79,37 @@ def update_screen(screen, boxes, data):
         n += 1
 
 def main():
-    layout =  {
-            "row1": {"name":"column1"},
-            "row2": {"name":"column1"},
-            "row3": {"name":"column1"}
-    }
+    with open('layout.json') as layout_f:
+        layout = json.load(layout_f)
     data = [
         {
             "title":"GPS Data",
-            "content":"two",
-            "three":"three"
+            "content":"This is GPS data",
+            "row": "row0",
+            "column": "c4"
         },
         {
             "title":"Temperature",
-            "content":"two",
-            "three":"three"
+            "content":"This is Temperature data",
+            "row":"row2",
+            "column": "c3"
         }
     ]
 
-    layout
-    #screen = init()
-    #outer_frame = create_frame(screen)
+    screen = init()
+    outer_frame = create_frame(screen)
+    create_layout(outer_frame, layout)
+    f = open("layout.txt", "w") 
+    f.write(str(layout))
+
+    for item in data:
+        for row in layout["rows"]:
+            if row["name"] == item["row"]:
+                for column in row["columns"]:
+                    if column["name"] == item["column"]:
+                        column["box"].addstr(1,1,"This is a test")
+                        column["box"].refresh()
+    #layout = set_layout(outer_frame, layout)
     #create_row(outer_frame, 3, 3, 1)
 
     #try:
