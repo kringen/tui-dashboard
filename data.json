@@ -1,0 +1,22 @@
+{
+    "boxes": [
+        {
+            "header":"GPS Data",
+            "content":"Time:       2012-06-18T15:05:10.0Z\nLatitude:    51.231848 N\nLongitude:    0.514014 E\nAltitude:   132.3 m\nSpeed:      0.0 kph\nHeading:    0.0 deg (true)\nClimb:      0.0 m/min\nStatus:     3D FIX (1 secs)\nGPS Type:\nLongitude Err:   +/- 8 m\nLatitude Err:    +/- 9 m\nAltitude Err:    +/- 27 m\nsCourse Err:      n/a\nSpeed Err:       +/- 68 kph",
+            "row": "row0",
+            "column": "c1"
+        },
+        {
+            "header": "Azimuth",
+            "content": "PRN:\tElev:\tAzim:\tSNR:\tUsed:\n14\t43\t249\t40\tY\n25\t75\t283\t37\tY\n 2\t26\t085\t31\tY\n12\t56\t070\t18\tY\n 9\t19\t133\t22\tY\n27\t09\t133\t17\tY\n 4\t17\t045\t31\tY\n32\t05\t321\t20\tY\n29\t41\t192\t18\tY\n31\t28\t304\t42\tY",
+            "row": "row0",
+            "column": "c2"
+        },
+        {
+            "header":"Temperature",
+            "content":"Temperature:\t78\nPressure:\t50\nHumidity:\t45",
+            "row":"row0",
+            "column": "c3"
+        }
+    ]
+}

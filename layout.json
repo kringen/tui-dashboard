@@ -5,24 +5,15 @@
         "columns": [
             {"name":"c1"},
             {"name":"c2"},
-            {"name":"c3"},
-            {"name":"c4"}
+            {"name":"c3"}
         ]
     },
     {
         "name": "row1",
         "columns": [
             {"name":"c1"},
-            {"name":"c2"}
-        ]
-    },
-    {
-        "name": "row2",
-        "columns": [
-            {"name":"c1"},
             {"name":"c2"},
-            {"name":"c3"},
-            {"name":"c4"}
+            {"name":"c3"}
         ]
     }
 ]
