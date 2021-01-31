@@ -2,7 +2,7 @@
     "boxes": [
         {
             "header":"GPS Data",
-            "content":"Time:       2012-06-18T15:05:10.0Z\nLatitude:    51.231848 N\nLongitude:    0.514014 E\nAltitude:   132.3 m\nSpeed:      0.0 kph\nHeading:    0.0 deg (true)\nClimb:      0.0 m/min\nStatus:     3D FIX (1 secs)\nGPS Type:\nLongitude Err:   +/- 8 m\nLatitude Err:    +/- 9 m\nAltitude Err:    +/- 27 m\nsCourse Err:      n/a\nSpeed Err:       +/- 68 kph",
+            "content":"Time:\t\t2012-06-18T15:05:10.0Z\nLatitude:\t51.231848 N\nLongitude:\t0.514014 E\nAltitude:132.3 m\nSpeed:\t0.0 kph\nHeading:\t0.0 deg (true)\nClimb:\t0.0 m/min\nStatus:\t3D FIX (1 secs)\nGPS Type:\nLongitude Err:\t+/- 8 m\nLatitude Err:\t+/- 9 m\nAltitude Err:\t+/- 27 m",
             "row": "row0",
             "column": "c1"
         },

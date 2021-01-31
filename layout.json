@@ -7,14 +7,6 @@
             {"name":"c2"},
             {"name":"c3"}
         ]
-    },
-    {
-        "name": "row1",
-        "columns": [
-            {"name":"c1"},
-            {"name":"c2"},
-            {"name":"c3"}
-        ]
     }
 ]
    
